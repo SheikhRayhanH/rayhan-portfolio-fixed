@@ -7,7 +7,7 @@ export const profile = {
   phone: '+8801331997732',
   location: 'Dhaka, Bangladesh',
   availability: 'Open to work & freelance',
-  github: 'https://github.com/your-username', // TODO: replace
+  github: 'https://github.com/SheikhRayhanH', // TODO: replace
   linkedin: 'https://www.linkedin.com/in/your-username', // TODO: replace
   photo: '/assets/profile.jpg', // file: public/assets/profile.jpg
   cvUrl: '/assets/Rayhan-Sheikh-Rahat-CV.pdf', // file: public/assets/Rayhan-Sheikh-Rahat-CV.pdf
