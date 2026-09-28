@@ -1,0 +1,30 @@
+import { useEffect, useState } from 'react';
+import { profile, navLinks } from '../data.js';
+
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onKey = (e) => e.key === 'Escape' && setOpen(false);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('keydown', onKey);
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('keydown', onKey); };
+  }, []);
+
+  return (
+    <header className={scrolled ? 'scrolled' : ''}>
+      <div className="wrap nav">
+        <a href="#top" className="logo" aria-label="Home">{profile.initials}</a>
+        <button className="burger" aria-label="Toggle menu" aria-expanded={open} aria-controls="nav" onClick={() => setOpen((o) => !o)}>
+          {open ? '✕' : '☰'}
+        </button>
+        <nav id="nav" className={`links${open ? ' open' : ''}`} aria-label="Main">
+          {navLinks.map((l) => <a key={l.href} href={l.href} onClick={() => setOpen(false)}>{l.label}</a>)}
+        </nav>
+      </div>
+    </header>
+  );
+}
