@@ -1,17 +1,19 @@
-// Contact form transport. Set VITE_API_URL to your Node.js backend to send real requests.
-// Expected endpoint: POST {VITE_API_URL}/api/contact  with JSON { name, email, subject, message }
-const API_URL = import.meta.env.VITE_API_URL;
+// Contact form transport, powered by Web3Forms (free, no backend needed).
+const ACCESS_KEY = 'bc4457e5-d7b8-46c5-88f1-33d6a4b6d14b'; // paste your Web3Forms access key here
 
 export async function sendMessage(data) {
-  if (!API_URL) {
-    await new Promise((r) => setTimeout(r, 600)); // demo mode: nothing is delivered
-    return { ok: true, demo: true };
-  }
-  const res = await fetch(`${API_URL}/api/contact`, {
+  const res = await fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
+    body: JSON.stringify({
+      access_key: ACCESS_KEY,
+      name: data.name,
+      email: data.email,
+      subject: data.subject,
+      message: data.message,
+    }),
   });
-  if (!res.ok) throw new Error('Request failed');
-  return res.json();
+  const result = await res.json();
+  if (!result.success) throw new Error(result.message || 'Request failed');
+  return result;
 }
