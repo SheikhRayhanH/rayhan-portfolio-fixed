@@ -73,5 +73,13 @@ export const projects = [
     live: 'https://rayhanshweb.netlify.app',
     github: '',
   },
+    {
+    title: 'AR Councle Pro',
+    description: 'An admin dashboard for an education consultancy — tracks students, applications, visa status and country preference with live charts.',
+    tech: ['React', 'Charts', 'Responsive UI'], // TODO: adjust to what you actually used
+    image: '/projects/ar-councle-pro.jpg',
+    live: 'https://arcouncilprorsr.netlify.app/',
+    github: 'https://github.com/SheikhRayhanH/AR-Councle-Pro-RSR-',
+  },
 ];
 
